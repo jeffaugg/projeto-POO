@@ -1,0 +1,1 @@
+Pasta employees mostra as classes que herdam da classe abstrata sálario Funcionario
