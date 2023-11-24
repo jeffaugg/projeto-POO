@@ -1,6 +1,8 @@
 package pacote.employees.father;
 
-public interface Administraçao {
+import java.io.Serializable;
+
+public interface Administraçao extends Serializable {
     public void adicionarFuncionario(Funcionario funcionario);
 
     public void removerFuncionario(Funcionario funcionario);

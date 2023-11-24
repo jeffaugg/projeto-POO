@@ -5,14 +5,16 @@ import pacote.employees.father.*;
 import pacote.Bigdata;
 
 public class Gerente extends Funcionario implements Administraçao {
-    Bigdata bigdata = new Bigdata();
+    private Bigdata bigdata;
     private transient Scanner input = new Scanner(System.in);
     private int senha;
 
-    public Gerente(String nome, String email, Departamento departamento, int admissao, int salario, long fone) {
+    public Gerente(String nome, String email, Departamento departamento, int admissao, int salario, long fone,
+            Bigdata bigdata) {
         super(nome, email, departamento, admissao, salario, fone);
         System.out.println("Digite a senha do gerente:");
         setSenha(senha = input.nextInt());
+        this.bigdata = bigdata;
     }
 
     public int getSenha() {

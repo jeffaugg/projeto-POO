@@ -2,10 +2,9 @@ package pacote.employees.children;
 
 import pacote.employees.father.*;
 
-import java.io.Serializable;
 import java.util.Scanner;
 
-public class Estagiario extends Funcionario implements Serializable {
+public class Estagiario extends Funcionario {
     Scanner input = new Scanner(System.in);
     private String curso;
 

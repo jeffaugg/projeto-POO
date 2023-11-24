@@ -1,64 +1,28 @@
 package pacote;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.File;
 import pacote.employees.father.*;
 import pacote.employees.children.*;
 
-class PersistenciaDados {
-    public static void salvar(Object obj, String arquivo) {
-        try {
-            FileOutputStream fileOut = new FileOutputStream(arquivo);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(obj);
-            out.close();
-            fileOut.close();
-        } catch (IOException i) {
-            i.printStackTrace();
-        }
-    }
-
-    public static Object carregar(String arquivo) {
-        Object obj = null;
-        try {
-            FileInputStream fileIn = new FileInputStream(arquivo);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            obj = in.readObject();
-            in.close();
-            fileIn.close();
-        } catch (IOException i) {
-            i.printStackTrace();
-        } catch (ClassNotFoundException c) {
-            System.out.println("Classe não encontrada");
-            c.printStackTrace();
-        }
-        return obj;
-    }
-}
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Bigdata implements Serializable {
-    ArrayList<Funcionario> funcionarios;
-
-    public Bigdata() {
-        // Carregar o estado salvo da lista de funcionários
-        File f = new File("funcionarios.ser");
-        if (f.exists() && !f.isDirectory()) {
-            funcionarios = (ArrayList<Funcionario>) PersistenciaDados.carregar("funcionarios.ser");
-        } else {
-            funcionarios = new ArrayList<Funcionario>();
-        }
-    }
+    ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
+    private String arquivoSerializacao = "dadosBigData.ser"; // Variável de instância que guarda o nome do arquivo de
+                                                             // serialização
 
     public void adicionarFuncionario(Funcionario funcionario) {
         funcionarios.add(funcionario);
-        // Salvar o estado atual da lista de funcionários
-        PersistenciaDados.salvar(funcionarios, "funcionarios.ser");
     }
 
     public void removerFuncionario(Funcionario funcionario) {
         funcionarios.remove(funcionario);
-        // Salvar o estado atual da lista de funcionários
-        PersistenciaDados.salvar(funcionarios, "funcionarios.ser");
     }
 
     public void listarFuncionarios(Departamento departamento) {
@@ -109,5 +73,67 @@ public class Bigdata implements Serializable {
             }
         }
         return null;
+    }
+
+    // public void carregarDados() {
+    // try {
+    // FileInputStream arquivoInput = new FileInputStream(arquivoSerializacao);
+    // ObjectInputStream input = new ObjectInputStream(arquivoInput);
+
+    // // Desserializando o objeto e atribuindo ao objeto atual
+    // Bigdata objetoSalvo = (Bigdata) input.readObject();
+    // this.funcionarios = objetoSalvo.funcionarios;
+
+    // input.close();
+    // arquivoInput.close();
+    // } catch (IOException | ClassNotFoundException e) {
+    // // Tratamento de exceções
+    // e.printStackTrace();
+    // }
+    // }
+
+    public void carregarDados() {
+        try {
+            File f = new File(arquivoSerializacao);
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+
+            // Verifica se o arquivo está vazio
+            if (f.length() == 0) {
+                // O arquivo está vazio, então criamos e salvamos um objeto padrão
+                this.funcionarios = new ArrayList<Funcionario>();
+                this.salvarDados();
+            } else {
+                FileInputStream arquivoInput = new FileInputStream(arquivoSerializacao);
+                ObjectInputStream input = new ObjectInputStream(arquivoInput);
+
+                // Desserializando o objeto e atribuindo ao objeto atual
+                Bigdata objetoSalvo = (Bigdata) input.readObject();
+                this.funcionarios = objetoSalvo.funcionarios;
+
+                input.close();
+                arquivoInput.close();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            // Tratamento de exceções
+            e.printStackTrace();
+        }
+    }
+
+    public void salvarDados() {
+        try {
+            FileOutputStream arquivoOutput = new FileOutputStream(arquivoSerializacao);
+            ObjectOutputStream output = new ObjectOutputStream(arquivoOutput);
+
+            // Salvando o objeto atual
+            output.writeObject(this);
+
+            output.close();
+            arquivoOutput.close();
+        } catch (IOException e) {
+            // Tratamento de exceções
+            e.printStackTrace();
+        }
     }
 }

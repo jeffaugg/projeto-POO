@@ -8,7 +8,7 @@ public class Temporario extends Funcionario {
 
     public Temporario(String nome, String email, Departamento departamento, int admissao, int salario, long fone) {
         super(nome, email, departamento, admissao, salario, fone);
-        System.out.println("Digite a duração do contrato em anos:");
+        System.out.println("Digite a duração do contrato(Em dias):");
         this.duracao = input.nextInt();
     }
 

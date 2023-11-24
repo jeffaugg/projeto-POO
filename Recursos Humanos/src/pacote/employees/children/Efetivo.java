@@ -8,7 +8,7 @@ public class Efetivo extends Funcionario {
 
     public Efetivo(String nome, String email, Departamento departamento, int admissao, int salario, long fone) {
         super(nome, email, departamento, admissao, salario, fone);
-        System.out.println("Digite o número do contrato:");
+        System.out.println("Digite o tempo até a renovação do contrato(Em anos):");
         this.contrato = input.nextInt();
     }
 
