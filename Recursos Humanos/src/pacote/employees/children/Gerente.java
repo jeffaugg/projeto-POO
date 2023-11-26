@@ -10,8 +10,8 @@ public class Gerente extends Funcionario implements Administraçao {
     private int senha;
 
     public Gerente(String nome, String email, Departamento departamento, int admissao, int salario, long fone,
-            Bigdata bigdata) {
-        super(nome, email, departamento, admissao, salario, fone);
+            Bigdata bigdata, int id) {
+        super(nome, email, departamento, admissao, salario, fone, id);
         System.out.println("Digite a senha do gerente:");
         setSenha(senha = input.nextInt());
         this.bigdata = bigdata;
@@ -51,7 +51,8 @@ public class Gerente extends Funcionario implements Administraçao {
     public String toString() {
         return "Nome: " + this.getNome() + "\nEmail: " + this.getEmail() + "\nDepartamento: "
                 + this.getDepartamento().toString() + "\nAdmissão: " + this.getAdmissao() + "\nSalário: "
-                + this.getSalario() + "\nFone: " + this.getFone() + "\nSenha: " + this.getSenha();
+                + this.getSalario() + "\nFone: " + this.getFone() + "\nSenha: " + this.getSenha()
+                + "\nID: " + this.getId();
     }
 
 }

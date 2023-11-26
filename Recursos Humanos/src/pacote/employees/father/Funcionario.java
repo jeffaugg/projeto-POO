@@ -7,19 +7,19 @@ public abstract class Funcionario implements Serializable {
     private String email;
     private Departamento departamento;
     private int id;
-    private static int idd = 1000;
     private int admissao;
     private int salario;
     private long fone;
 
-    public Funcionario(String nome, String email, Departamento departamento, int admissao, int salario, long fone) {
+    public Funcionario(String nome, String email, Departamento departamento, int admissao, int salario, long fone,
+            int id) {
         this.nome = nome;
         this.email = email;
         this.departamento = departamento;
         this.admissao = admissao;
         this.salario = salario;
         this.fone = fone;
-        this.id = idd++;
+        this.id = id;
 
     }
 

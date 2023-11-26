@@ -6,8 +6,8 @@ import java.util.*;
 public class Efetivo extends Funcionario {
     private int contrato;
 
-    public Efetivo(String nome, String email, Departamento departamento, int admissao, int salario, long fone) {
-        super(nome, email, departamento, admissao, salario, fone);
+    public Efetivo(String nome, String email, Departamento departamento, int admissao, int salario, long fone, int id) {
+        super(nome, email, departamento, admissao, salario, fone, id);
         System.out.println("Digite o tempo até a renovação do contrato(Em anos):");
         this.contrato = input.nextInt();
     }
@@ -23,7 +23,9 @@ public class Efetivo extends Funcionario {
     public String toString() {
         return "Nome: " + this.getNome() + "\nEmail: " + this.getEmail() + "\nDepartamento: "
                 + this.getDepartamento().toString() + "\nAdmissão: " + this.getAdmissao() + "\nSalário: "
-                + this.getSalario() + "\nFone: " + this.getFone() + "\nContrato: " + this.getContrato();
+                + this.getSalario() + "\nFone: " + this.getFone() + "\nContrato: " + this.getContrato()
+                + "ID: " + this.getId();
+
     }
 
     Scanner input = new Scanner(System.in);

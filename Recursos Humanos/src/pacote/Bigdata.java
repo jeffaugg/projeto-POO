@@ -136,4 +136,19 @@ public class Bigdata implements Serializable {
             e.printStackTrace();
         }
     }
+
+    public int getnextid() {
+        int id = 0;
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getId() > id) {
+                id = funcionario.getId();
+            }
+        }
+
+        if (id == 0) {
+            return 1000;
+        }
+        return id + 1;
+    }
+
 }

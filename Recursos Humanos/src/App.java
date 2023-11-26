@@ -213,26 +213,26 @@ class Opcoes {
         switch (aux) {
             case 1:
                 Efetivo efetivo = new Efetivo((String) parametros.get(0), (String) parametros.get(1),
-                        (Departamento) parametros.get(2), aux3, aux4, aux5);
+                        (Departamento) parametros.get(2), aux3, aux4, aux5, bigdata.getnextid());
                 // nome //email //departamento //admissao //salario //fone
                 bigdata.adicionarFuncionario(efetivo);
 
                 break;
             case 2:
                 Estagiario estagiario = new Estagiario((String) parametros.get(0), (String) parametros.get(1),
-                        (Departamento) parametros.get(2), aux3, aux4, aux5);
+                        (Departamento) parametros.get(2), aux3, aux4, aux5, bigdata.getnextid());
                 // nome //email //departamento //admissao //salario //fone
                 bigdata.adicionarFuncionario(estagiario);
                 break;
             case 3:
                 Temporario temporario = new Temporario((String) parametros.get(0), (String) parametros.get(1),
-                        (Departamento) parametros.get(2), aux3, aux4, aux5);
+                        (Departamento) parametros.get(2), aux3, aux4, aux5, bigdata.getnextid());
                 // nome //email //departamento //admissao //salario / /fone
                 bigdata.adicionarFuncionario(temporario);
                 break;
             case 4:
                 Gerente gerente = new Gerente((String) parametros.get(0), (String) parametros.get(1),
-                        (Departamento) parametros.get(2), aux3, aux4, aux5, this.bigdata);
+                        (Departamento) parametros.get(2), aux3, aux4, aux5, this.bigdata, bigdata.getnextid());
                 // nome //email //departamento //admissao //salario //fone
                 bigdata.adicionarFuncionario(gerente);
                 break;
