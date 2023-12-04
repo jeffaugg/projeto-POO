@@ -85,14 +85,14 @@ class Opcoes {
     public void adicionarfun() throws Exception {
         ArrayList<Object> parametros = new ArrayList<Object>();
         System.out.println("Digite o nome do funcionário: ");
-        parametros.add(System.console().readLine());
+        parametros.add(in.nextLine());
         // recebeo nome do funcionario e adiciona na lista de parametros para o
         // construtor
 
         Clear.clearScreen(); // limpa a tela
 
         System.out.println("Digite o email do funcionário: ");
-        parametros.add(System.console().readLine());
+        parametros.add(in.nextLine());
         // recebeo email do funcionario e adiciona na lista de parametros para o
         // construtor
 
@@ -104,7 +104,8 @@ class Opcoes {
                 + "\n3 - Jurídico"
                 + "\n4 - Limpeza"
                 + "\n5 - Vendas");
-        int aux = Integer.parseInt(System.console().readLine());
+        int aux = in.nextInt();
+        in.nextLine();
         switch (aux) {
             case 1:
                 parametros.add(Departamento.Financeiro);
@@ -156,7 +157,8 @@ class Opcoes {
                 + "\n3 - Temporário"
                 + "\n4 - Gerente");
 
-        aux = Integer.parseInt(System.console().readLine());
+        aux = in.nextInt();
+        in.nextLine();
 
         if (aux < 1 || aux > 4) {
             throw new Exception("Tipo de funcionário não encontrado");
@@ -179,6 +181,7 @@ class Opcoes {
 
             System.out.println("Digite o id do gerente: ");
             int auxidger = in.nextInt();
+            in.nextLine();
 
             if (bigdata.buscarFuncionario(auxidger) == null) {
                 throw new Exception("Gerente não encontrado");
@@ -192,11 +195,13 @@ class Opcoes {
             while (true) {
                 System.out.println("Digite a senha do gerente: ");
                 int auxsenha = in.nextInt();
+                in.nextLine();
                 if (bigdata.verificarSenha(auxsenha, (Departamento) parametros.get(2)) == null) {
                     System.out.println("Senha incorreta"
                             + "\n 1 - Digite novamente"
                             + "\n 2 - Sair");
                     int aux2 = in.nextInt();
+                    in.nextLine();
 
                     if (aux2 == 2) {
                         return;
@@ -245,6 +250,7 @@ class Opcoes {
     public void removerfun() throws Exception {
         System.out.println("Digite o id do funcionário que deseja remover: ");
         int auxidfunc = in.nextInt();
+        in.nextLine();
         Clear.clearScreen();
         if (bigdata.buscarFuncionario(auxidfunc) == null) {
             System.out.println("Funcionário não encontrado");
@@ -253,6 +259,7 @@ class Opcoes {
 
         System.out.println("Digite o id do gerente: ");
         int auxidger = in.nextInt();
+        in.nextLine();
 
         if (bigdata.buscarFuncionario(auxidger).getDepartamento() != bigdata.buscarFuncionario(auxidfunc)
                 .getDepartamento()) {
@@ -268,11 +275,13 @@ class Opcoes {
         while (true) {
             System.out.println("Digite a senha do gerente: ");
             int auxsenha = in.nextInt();
+            in.nextLine();
             if (bigdata.verificarSenha(auxsenha, bigdata.buscarFuncionario(auxidfunc).getDepartamento()) == null) {
                 System.out.println("Senha incorreta"
                         + "\n 1 - Digite novamente"
                         + "\n 2 - Sair");
                 int aux2 = in.nextInt();
+                in.nextLine();
 
                 if (aux2 == 2) {
                     return;
@@ -292,6 +301,7 @@ class Opcoes {
                 + "\n2 - Listar funcionários por departamento");
 
         int aux = in.nextInt();
+        in.nextLine();
         Clear.clearScreen();
         if (aux == 1) {
             bigdata.listarFuncionarios();
@@ -303,6 +313,7 @@ class Opcoes {
                     + "\n4 - Limpeza"
                     + "\n5 - Vendas");
             int aux2 = in.nextInt();
+            in.nextLine();
             Clear.clearScreen();
             switch (aux2) {
                 case 1:
@@ -331,6 +342,7 @@ class Opcoes {
     public void aumentarsal() throws Exception {
         System.out.println("Digite o id do funcionário que deseja aumentar o salário: ");
         int auxidfunc = in.nextInt();
+        in.nextLine();
         Clear.clearScreen();
 
         if (bigdata.buscarFuncionario(auxidfunc) == null) {
@@ -339,6 +351,7 @@ class Opcoes {
 
         System.out.println("Digite o id do gerente: ");
         int auxidger = in.nextInt();
+        in.nextLine();
 
         if (bigdata.buscarFuncionario(auxidfunc).getId() == bigdata.buscarFuncionario(auxidger).getId()) {
             throw new Exception("O gerente não pode aumentar o próprio salário");
@@ -358,12 +371,14 @@ class Opcoes {
         while (true) {
             System.out.println("Digite o senha do gerente: ");
             int auxsenha = in.nextInt();
+            in.nextLine();
             Clear.clearScreen();
             if (bigdata.verificarSenha(auxsenha, bigdata.buscarFuncionario(auxidfunc).getDepartamento()) == null) {
                 System.out.println("Senha incorreta"
                         + "\n 1 - Digite novamente"
                         + "\n 2 - Sair");
                 int aux2 = in.nextInt();
+                in.nextLine();
 
                 if (aux2 == 2) {
                     return;
@@ -379,6 +394,7 @@ class Opcoes {
         bigdata.buscarFuncionario(auxidfunc).getSalario();
         System.out.println("Digite o valor do aumento: ");
         int auxaumento = in.nextInt();
+        in.nextLine();
 
         if (auxaumento < 0) {
             throw new Exception("Valor inválido");
@@ -413,6 +429,7 @@ class Opcoes {
     public void diminuirsal() throws Exception {
         System.out.println("Digite o id do funcionário que deseja diminuir o salário: ");
         int auxidfunc = in.nextInt();
+        in.nextLine();
         Clear.clearScreen();
 
         if (bigdata.buscarFuncionario(auxidfunc) == null) {
@@ -421,6 +438,7 @@ class Opcoes {
 
         System.out.println("Digite o id do gerente: ");
         int auxidger = in.nextInt();
+        in.nextLine();
 
         if (bigdata.buscarFuncionario(auxidfunc).getId() == bigdata.buscarFuncionario(auxidger).getId()) {
             throw new Exception("O gerente não pode diminuir o próprio salário");
@@ -438,11 +456,13 @@ class Opcoes {
         while (true) {
             System.out.println("Digite a senha do gerente: ");
             int auxsenha = in.nextInt();
+            in.nextLine();
             if (bigdata.verificarSenha(auxsenha, bigdata.buscarFuncionario(auxidfunc).getDepartamento()) == null) {
                 System.out.println("Senha incorreta"
                         + "\n 1 - Digite novamente"
                         + "\n 2 - Sair");
                 int aux2 = in.nextInt();
+                in.nextLine();
 
                 if (aux2 == 2) {
                     return;
@@ -458,6 +478,7 @@ class Opcoes {
         bigdata.buscarFuncionario(auxidfunc).getSalario();
         System.out.println("Digite o valor da redução: ");
         int auxred = in.nextInt();
+        in.nextLine();
 
         if (auxred < 0) {
             throw new Exception("Valor inválido");
